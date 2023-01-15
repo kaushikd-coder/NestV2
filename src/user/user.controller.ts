@@ -1,31 +1,35 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Req, Param, Patch, Delete } from "@nestjs/common";
+import { Body } from "@nestjs/common/decorators";
 import { Request } from "express";
-
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/user-create.dto';
 @Controller('/user')
 export class UserController{
+
+    constructor(private userService: UserService) {}
     @Get()
     getUsers() {
-        return {name:"Kaushik", email:"test12@gmail.com"};
+        return this.userService.getUsers();
     }
 
     @Post()
-    setUser(@Req() req: Request ) {
-        return req.body;
+    setUser(@Body() createUser: CreateUserDto ) {
+        return this.userService.setUser(createUser);
     }
 
-    @Patch()
-    updateUser(@Req() req: Request ) {
-        return req.body;
+    @Patch("/:id")
+    updateUser(@Body() body: any, @Param() params:{id: number} ) {
+        return this.userService.updateUser(body, params);
     }
 
-    // @Get("/:userId")
-    // getUser(@Param() userId: number){
-    //     return userId;
-    // }
+    @Get("/:userId")
+    getUser(@Param() userId: number){
+        return this.userService.getUser(userId);
+    }
 
     @Delete("/:userId")
     deleteUser(@Param() params: {userId: number}){
-        return params;
+        return this.userService.deleteUser(params);
     }
 }
