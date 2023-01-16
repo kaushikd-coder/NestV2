@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Req, Param, Patch, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Req, Param, Patch, Delete, ParseIntPipe } from "@nestjs/common";
 import { Body } from "@nestjs/common/decorators";
 import { Request } from "express";
 import { UserService } from './user.service';
@@ -24,7 +24,7 @@ export class UserController{
     }
 
     @Get("/:userId")
-    getUser(@Param() userId: number){
+    getUser(@Param('userId', ParseIntPipe)  userId: string){
         return this.userService.getUser(userId);
     }
 
