@@ -16,7 +16,7 @@ export class UserService {
         return {...body, params};
     }
 
-    getUser(userId:number){
+    getUser(userId:string){
         return {userId}
     }
 
