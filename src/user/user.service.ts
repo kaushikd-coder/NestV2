@@ -12,8 +12,8 @@ export class UserService {
         return createUser;
     }
 
-    updateUser(body:any, params:{id:number}){
-        return {...body, params};
+    updateUser(req:any, params:{id:number}){
+        return {...req.body,params};
     }
 
     getUser(userId:string){
