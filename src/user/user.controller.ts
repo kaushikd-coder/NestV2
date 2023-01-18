@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Req, Param, Patch, Delete, ParseIntPipe } from "@nestjs/common";
+
+import { Controller, Get, Post, Req, Param, Patch, Delete, ParseIntPipe, UsePipes, ValidationPipe } from "@nestjs/common";
 import { Body } from "@nestjs/common/decorators";
 import { Request } from "express";
 import { UserService } from './user.service';
